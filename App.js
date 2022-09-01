@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, TouchableOpacity} from 'react-native';
 import Product from './Product';
-import {products} from './src/products.json';
+import {products} from './products.json';
 
 const Products = () => {
   return (
@@ -27,9 +27,7 @@ export default () => {
   console.log(products);
   return (
     <View>
-      <ScrollView>
-        <Products />
-      </ScrollView>
+      <Products />
     </View>
   );
 };
