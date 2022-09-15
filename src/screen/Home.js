@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, TouchableOpacity, FlatList, Text} from 'react-native';
-import Product from './Product';
-import {products} from './products.json';
+import Product from '../../Product';
+import {products} from '../../products.json';
 
 const Products = props => {
   const {products} = props;
