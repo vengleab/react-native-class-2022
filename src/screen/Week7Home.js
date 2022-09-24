@@ -1,17 +1,6 @@
-import {
-  Box,
-  Center,
-  Checkbox,
-  CheckIcon,
-  NativeBaseProvider,
-  PlayIcon,
-  AddIcon,
-  Select,
-  HStack,
-} from 'native-base';
+import {PlayIcon, AddIcon, HStack} from 'native-base';
 import React from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
-import Button from '../common/Button';
+import {SafeAreaView} from 'react-native';
 import {Icon} from 'native-base';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
