@@ -1,15 +1,63 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HeaderBackButton} from '@react-navigation/elements';
 import HomeScreen from '../screen/Week8Home';
 import Product from '../screen/Product';
 import AboutUs from '../screen/AboutUs';
-import {Icon, View} from 'native-base';
+import {Icon, View, Image, Center} from 'native-base';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {DrawerActions} from '@react-navigation/native';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 import SettingScreen from '../screen/Setting';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Button} from 'react-native';
+import {Button, ImageBackground, Text} from 'react-native';
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+
+const MaterialCommunityIconComponent = otherProps => {
+  return <Icon as={MaterialCommunityIcons} size={4} {...otherProps} />;
+};
+
+function CustomDrawerContent(props) {
+  const navigation = useNavigation();
+  return (
+    <DrawerContentScrollView {...props}>
+      <Center>
+        <Image
+          source={{
+            uri: 'https://cdn-icons-png.flaticon.com/512/1946/1946429.png',
+          }}
+          size="xl"
+          // style={{height: '100%'}}
+        />
+      </Center>
+      {/* <DrawerItemList {...props} /> */}
+      {[
+        {name: SCREEN_NAME.HOME, icon: 'folder-home'},
+        {name: SCREEN_NAME.ABOUT_US, icon: 'card-account-mail-outline'},
+      ].map(({name, icon}) => {
+        return (
+          <DrawerItem
+            icon={() => <MaterialCommunityIconComponent name={icon} />}
+            label={name}
+            onPress={() => navigation.navigate(name)}
+          />
+        );
+      })}
+      <DrawerItem
+        label="Logout"
+        onPress={() => {
+          // clear session
+          // remove data
+          alert('Logout');
+          navigation.dispatch(DrawerActions.closeDrawer());
+        }}
+      />
+    </DrawerContentScrollView>
+  );
+}
 
 export const SCREEN_NAME = {
   HOME: 'Home',
@@ -76,9 +124,7 @@ const HomeStackNavigator = () => {
 
 export default () => {
   return (
-    <Drawer.Navigator
-    // screenOptions={{headerShown: false}}
-    >
+    <Drawer.Navigator drawerContent={CustomDrawerContent}>
       <Drawer.Screen
         name={SCREEN_NAME.HOME}
         component={HomeStackNavigator}
